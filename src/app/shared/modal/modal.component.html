@@ -1,0 +1,16 @@
+<div [ngStyle]="{'z-index': zIndex}" class="bg-modal" *ngIf="getVisible()==true" id="modal-component" #modal>
+        <div class="content-modal" [style.width]="width">
+            <div *ngIf="inside" class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top ng-tns-c5-3 ng-star-inserted">
+                <span class="ui-dialog-title ng-tns-c5-3 ng-star-inserted">{{title}}</span>
+                <!--span class="header-modal">{{title}}</span-->
+                <i *ngIf="btnCloseModal" (click)="closeModal()" class="fa fa-times close-button"></i>
+            </div>
+            <div class="header-modal" *ngIf="!inside">
+                    <span>{{title}}</span>                
+                    <i *ngIf="btnCloseModal" (click)="closeModal()" class="fa fa-times close-button"></i>
+                </div>
+            <div [ngClass]="noPadding ? 'body-modal no-padding no-bg': 'body-modal'">
+                <ng-content></ng-content>
+            </div>
+        </div>
+    </div>

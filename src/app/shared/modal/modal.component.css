@@ -1,0 +1,131 @@
+.bg-modal{
+    position: fixed;
+    top:0;left:0;right:0;bottom:0;
+    background-color: rgba(0,0,0,0.6);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    overflow: auto;
+}
+
+.content-modal{
+    position: absolute;
+    margin: auto auto;
+    margin-top: 2.5px;
+    padding: 0px;
+    height: max-content;
+    height: -webkit-stretch;
+    max-height: fit-content;
+    width: max-content;
+    background-color: white;
+    border-radius: 2.5px;
+    border: 2.5px solid #ebedf0;
+    z-index: 1000;
+}
+
+/*.header-modal{
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    font-size:20px;
+    font-size: 1.25em;
+    font-weight: 600;
+    text-align: left;
+    /*padding: 15px;
+}*/
+
+.header-modal{
+    padding: 1em 1.5em;
+    background: #f6f7f9 0 0 repeat-x;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f6f7f9), to(#ebedf0));
+    background: linear-gradient(to bottom, #f6f7f9 0%, #ebedf0 100%);
+    border: 1px solid #d9d9d9;
+    background-color: #f6f7f9;
+    color: #000000;
+    font-weight: normal;
+    font-size: 1.25em;
+}
+
+.body-modal{
+    background-color: #ffffff;
+    overflow: auto;
+    max-width: 100%;
+    max-height: calc(100vh - 70px);
+    padding: 35px;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.no-bg {
+    background: none !important;
+}
+
+
+.close-button{
+    float: right;
+    padding: 3px 5px;
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,0.15);
+}
+
+.close-button:hover{
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
+/********************************************/
+.ui-dialog.ui-widget .ui-dialog-titlebar {
+    padding: 1em 1.5em;
+}
+
+
+.ui-dialog .ui-dialog-titlebar {
+    padding: .5em .75em;
+    position: relative;
+    border: 0;
+}
+
+.ui-widget-header {
+    background: #f6f7f9 0 0 repeat-x;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f6f7f9), to(#ebedf0));
+    background: linear-gradient(to bottom, #f6f7f9 0%, #ebedf0 100%);
+}
+
+.ui-corner-top {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.ui-widget-header {
+    border: 1px solid #d9d9d9;
+    background-color: #f6f7f9;
+    color: #1b1d1f;
+    font-weight: normal;
+}
+
+.ui-helper-clearfix {
+    zoom: 1;
+}
+
+.ui-widget, .ui-widget * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.ui-dialog.ui-widget .ui-dialog-titlebar .ui-dialog-title {
+    font-size: 1.25em;
+}
+
+
+
+
+
+
