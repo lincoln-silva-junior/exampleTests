@@ -1,8 +1,18 @@
 <ag-grid-angular 
+    #agGrid
     style="width: 100%; height: 350px;" 
     class="ag-theme-balham"
+    [enableSorting]="true" 
+    [enableFilter]="true"
     [rowData]="rowData" 
     [columnDefs]="columnDefs"
     [pagination]="true"
-    [paginationAutoPageSize]="true">    
+    [paginationAutoPageSize]="true"
+    [suppressMovableColumns]= "true"
+    [defaultColDef] = "defaultColumnDefs"
+    [frameworkComponents]="frameworkComponents"
+    [context]="context"
+    (filterChanged)="onModelUpdated($event)"
+    (gridReady)="onGridReady($event)">
+        
 </ag-grid-angular>

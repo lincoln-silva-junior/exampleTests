@@ -8,6 +8,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { GridBaseComponent } from './shared/grid-base/grid-base.component';
 import { ModalComponent } from './shared/modal/modal.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { UsuariosService } from './usuarios/usuarios.service';
+import { EditButtonModalComponent } from './shared/grid-base/edit-button-modal/edit-button-modal.component';
 
 @NgModule({
   declarations: [
@@ -15,14 +18,16 @@ import { ModalComponent } from './shared/modal/modal.component';
     HomeComponent,
     NavbarComponent,
     GridBaseComponent,
-    ModalComponent
+    ModalComponent,
+    UsuariosComponent,
+    EditButtonModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([EditButtonModalComponent])
   ],
-  providers: [],
+  providers: [UsuariosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

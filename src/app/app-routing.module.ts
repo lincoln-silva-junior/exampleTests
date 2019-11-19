@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 const routes: Routes = [
   { path: '',
@@ -8,7 +9,9 @@ const routes: Routes = [
       pathMatch: 'full'
   },
   { path: 'home',
-    component: HomeComponent }
+    component: HomeComponent },
+  { path: 'usuarios',
+    component: UsuariosComponent }
 ];
 
 @NgModule({
