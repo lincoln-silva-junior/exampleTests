@@ -13,7 +13,7 @@ export class EditButtonModalComponent implements ICellRendererAngularComp {
   constructor() { }
 
   agInit(params: any): void {
-    this.params = this.params.value;
+    this.params = params;
     this.idValue = this.params.value;
   }
 

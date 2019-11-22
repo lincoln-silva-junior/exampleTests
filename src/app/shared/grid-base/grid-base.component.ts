@@ -13,20 +13,27 @@ export class GridBaseComponent implements OnInit {
   public frameworkComponents;
   public context;
   private defaultColumnDefs: any;
+  public gridOptions = {
+    rowHeight: 45
+  };
 
   @Output() change: EventEmitter<number> = new EventEmitter<number>();
   @Input('colDefs') columnDefs: any[];
   @Input('gRowData') rowData: any[];
 
   constructor() {
+
     this.context = { componentParent: this };
    }
 
   ngOnInit() {
+    this.InitGrid();
     if(!this.frameworkComponents) {      
       this.frameworkComponents = {        
         editButtonModal: EditButtonModalComponent        
       };
+    /*console.log(this.context);  
+    console.log(this.frameworkComponents);*/
     }
   }
 

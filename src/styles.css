@@ -3,6 +3,10 @@
 /*@import "../node_modules/bootstrap/dist/css/bootstrap.css";*/
 @import "~ag-grid-community/dist/styles/ag-grid.css";
 @import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+@import "~@fortawesome/fontawesome-free/css/fontawesome.css";
+@import "~@fortawesome/fontawesome-free/css/solid.min.css";
+@import "~@fortawesome/fontawesome-free/css/brands.min.css";
+@import "~@fortawesome/fontawesome-free/css/svg-with-js.min.css";
 
 /************************************************************
 ************************************************************/

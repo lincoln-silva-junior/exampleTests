@@ -12,11 +12,12 @@ export class ModalComponent {
     title: any;
     visible: boolean = false;
     width: any;
-    btnCloseModal: boolean = false;
-    inside: any;
+    btnCloseModal: boolean = true;
+    inside: any;    
 
     @Input() zIndex = 2147483647;
     @Input() noPadding = false;
+    @Input() hasSubmit =  false;
 
     closeModal() {
         this.visible = false;

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -25,6 +25,7 @@ import { EditButtonModalComponent } from './shared/grid-base/edit-button-modal/e
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     AgGridModule.withComponents([EditButtonModalComponent])
   ],
   providers: [UsuariosService],
