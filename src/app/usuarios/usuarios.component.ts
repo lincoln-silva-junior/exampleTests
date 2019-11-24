@@ -50,13 +50,14 @@ export class UsuariosComponent implements OnInit {
     }
 
     //this.router.navigate(['/usuarios']);
-    this.rowData = this.usersService.getUsers();
+    //this.rowData = this.usersService.getUsers();
+    this.gridUsuarios.gridApi.setRowData(this.rowData);
     //this.gridUsuarios.
     this.modalUsuario.closeModal();   
     
   }
 
-  newRegister(){
+  newRegister() {
     this.modalUsuario.showModal();
   }
 
@@ -71,7 +72,7 @@ export class UsuariosComponent implements OnInit {
 
   getByCode(id) {
 
-    let usuario =  this.usersService.getUser(id);
+    const usuario =  this.usersService.getUser(id);
     this.formulario.controls['id'].setValue(usuario.id);
     this.formulario.controls['nome'].setValue(usuario.nome);
     this.formulario.controls['login'].setValue(usuario.login);
