@@ -32,42 +32,37 @@ export class UsuariosService {
   }
 
   put(usuario: any): boolean {
-    const retorno = false;
+    
     try {
       for (let i = 0; i < this.users.length; i++) {
-        const user = this.users[i];
-        if (usuario.id === usuario.value.id) {
-          usuario.value.map((b: any) => {
-            return <User> b.json();
-          })
-          return usuario;
+        //const user = this.users[i];
+        if (this.users[i].id === usuario.id) {
+          this.users[i].nome = usuario.nome;
+          this.users[i].login = usuario.login;
+          this.users[i].email = usuario.email;          
         }
       }
-      return null;
+      return true;
 
     } catch (error) {
-      throw error;
-    } finally {
-      return retorno;
+      return false;    
     }
 
   }
 
   post(usuario: any): boolean {
-    let retorno = false;
+    
     try {
       let newId = 0;
 
       newId = (Math.max(...this.users.map(b => b.id)) + 1);
-      usuario.value.id = newId;
-      this.users.push(usuario.value);
+      usuario.id = newId;
+      this.users.push(usuario);
 
-      retorno = true;
+      return true;
 
     } catch (error) {
-      throw error;
-    } finally {
-      return retorno;
+      return false;
     }
 
   }

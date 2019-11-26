@@ -30,7 +30,7 @@ export class UsuariosComponent implements OnInit {
 
   InitForm() {
     this.formulario = this.formBuilder.group({
-      id: [0, Validators.required],
+      id: [null, null],
       nome: [null, [Validators.required, Validators.maxLength(50)]],
       login: [null, Validators.required],
       email: [null, Validators.required]
@@ -39,33 +39,35 @@ export class UsuariosComponent implements OnInit {
 
   onSubmit() {
 
-    const postObject = this.formulario;
+    const postObject = this.formulario.value;
 
     if (this.formulario.valid) {
-      if (this.formulario.controls['id'].value === 0) {
+      if (this.formulario.controls['id'].value === undefined) {
         if (this.usersService.post(postObject)) {
           alert('Registro Incluído com Sucesso!');
         } else {
-          alert('Erro ao incluir Registro!');
+          alert('Erro ao Incluir Registro!');
         }
       } else {
         if (this.usersService.put(postObject)) {
           alert('Registro Alterado com Sucesso!');
         } else {
-          alert('Erro ao alterar Registro!');
+          alert('Erro ao Alterar Registro!');
         }
       }
+      this.clearForm();
+    } else {
+      alert('Formulário não é válido!');
     }
 
-    // this.router.navigate(['/usuarios']);
-    // this.rowData = this.usersService.getUsers();
-    this.gridUsuarios.gridApi.setRowData(this.rowData);
-    // this.gridUsuarios.
-    this.modalUsuario.closeModal();
+    //this.rowData = this.usersService.getUsers();
+    //this.gridUsuarios.gridApi.setRowData(this.rowData);
+    
 
   }
 
   newRegister() {
+    this.clearForm();
     this.modalUsuario.showModal();
   }
 
@@ -80,7 +82,7 @@ export class UsuariosComponent implements OnInit {
 
   getByCode(id) {
 
-    const usuario =  this.usersService.getUser(id);
+    const usuario =  this.usersService.getUser(parseInt(id));
     this.formulario.controls['id'].setValue(usuario.id);
     this.formulario.controls['nome'].setValue(usuario.nome);
     this.formulario.controls['login'].setValue(usuario.login);
@@ -103,6 +105,13 @@ export class UsuariosComponent implements OnInit {
           cellRenderer: 'editButtonModal'
         }
     ];
+  }
+
+  clearForm(){    
+            
+    this.formulario.reset();
+    this.gridUsuarios.gridApi.setRowData(this.rowData);
+    this.modalUsuario.closeModal();
   }
 
 }
