@@ -13,14 +13,14 @@ import { Router } from '@angular/router';
 export class UsuariosComponent implements OnInit {
 
   @ViewChild('modalUsuario', {static: false}) modalUsuario: ModalComponent;
-  @ViewChild("gridUsuarios", {static: false}) gridUsuarios: GridBaseComponent;
+  @ViewChild('gridUsuarios', {static: false}) gridUsuarios: GridBaseComponent;
   public columnDefs: any[];
   public rowData: any[];
   formulario: FormGroup;
 
   constructor(private usersService: UsuariosService,
               private formBuilder: FormBuilder,
-              private router: Router) {  }  
+              private router: Router) {  }
 
   ngOnInit() {
     this.InitGrid();
@@ -37,24 +37,32 @@ export class UsuariosComponent implements OnInit {
     });
   }
 
-  onSubmit(){
+  onSubmit() {
 
-    let postObject = this.formulario
+    const postObject = this.formulario;
 
-    if(this.formulario.valid){
-      if(this.usersService.post(postObject)){
-        alert("Registro Incluído com Sucesso!")
+    if (this.formulario.valid) {
+      if (this.formulario.controls['id'].value === 0) {
+        if (this.usersService.post(postObject)) {
+          alert('Registro Incluído com Sucesso!');
+        } else {
+          alert('Erro ao incluir Registro!');
+        }
       } else {
-        alert("Erro ao incluir Registro!")
-      }      
+        if (this.usersService.put(postObject)) {
+          alert('Registro Alterado com Sucesso!');
+        } else {
+          alert('Erro ao alterar Registro!');
+        }
+      }
     }
 
-    //this.router.navigate(['/usuarios']);
-    //this.rowData = this.usersService.getUsers();
+    // this.router.navigate(['/usuarios']);
+    // this.rowData = this.usersService.getUsers();
     this.gridUsuarios.gridApi.setRowData(this.rowData);
-    //this.gridUsuarios.
-    this.modalUsuario.closeModal();   
-    
+    // this.gridUsuarios.
+    this.modalUsuario.closeModal();
+
   }
 
   newRegister() {
@@ -80,14 +88,14 @@ export class UsuariosComponent implements OnInit {
     this.modalUsuario.showModal();
   }
 
-  InitGrid(){
-    this.columnDefs = [       
+  InitGrid() {
+    this.columnDefs = [
         { headerName: 'Nome', field: 'nome'},
         { headerName: 'Login', field: 'login'},
         { headerName: 'Email', field: 'email'},
         {
           headerName: 'Ações',
-          field: 'id',          
+          field: 'id',
           colId: 'params',
           width: 150,
           suppressFilter: true,
