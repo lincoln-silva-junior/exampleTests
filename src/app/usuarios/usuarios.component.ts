@@ -42,7 +42,7 @@ export class UsuariosComponent implements OnInit {
     const postObject = this.formulario.value;
 
     if (this.formulario.valid) {
-      if (this.formulario.controls['id'].value === undefined) {
+      if (this.formulario.controls['id'].value == null) {
         if (this.usersService.post(postObject)) {
           alert('Registro Incluído com Sucesso!');
         } else {
@@ -107,8 +107,7 @@ export class UsuariosComponent implements OnInit {
     ];
   }
 
-  clearForm(){    
-            
+  clearForm() {
     this.formulario.reset();
     this.gridUsuarios.gridApi.setRowData(this.rowData);
     this.modalUsuario.closeModal();

@@ -9,10 +9,10 @@ export class UsuariosService {
   constructor() {
     if ((this.users === undefined) || (this.users.length === 0)) {
       this.users = [
-        {id: 1, nome: 'Pedro Souza', login: 'psouza', email:'psouza@email.com'},
-        {id: 2, nome: 'Carlos José', login: 'cjose', email:'cjose@email.com'},
-        {id: 3, nome: 'Ana Cristina', login: 'acristina', email:'acristina@email.com'},
-        {id: 4, nome: 'Maria Clara', login: 'mclara', email:'mclara@email.com'},
+        {id: 1, nome: 'Pedro Souza', login: 'psouza', email: 'psouza@email.com'},
+        {id: 2, nome: 'Carlos José', login: 'cjose', email: 'cjose@email.com'},
+        {id: 3, nome: 'Ana Cristina', login: 'acristina', email: 'acristina@email.com'},
+        {id: 4, nome: 'Maria Clara', login: 'mclara', email: 'mclara@email.com'},
       ];
     }
   }
@@ -32,26 +32,24 @@ export class UsuariosService {
   }
 
   put(usuario: any): boolean {
-    
     try {
       for (let i = 0; i < this.users.length; i++) {
-        //const user = this.users[i];
+        // const user = this.users[i];
         if (this.users[i].id === usuario.id) {
           this.users[i].nome = usuario.nome;
           this.users[i].login = usuario.login;
-          this.users[i].email = usuario.email;          
+          this.users[i].email = usuario.email;
         }
       }
       return true;
 
     } catch (error) {
-      return false;    
+      return false;
     }
 
   }
 
   post(usuario: any): boolean {
-    
     try {
       let newId = 0;
 
