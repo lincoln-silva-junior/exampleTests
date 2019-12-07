@@ -7,7 +7,7 @@
             </div>
             <div class="header-modal" *ngIf="!inside">
                     <span>{{title}}</span>                
-                    <div style="float:right;cursor: pointer;"><i *ngIf="btnCloseModal" (click)="closeModal()" class="fas fa-times"></i></div>
+                    <div style="float:right;cursor: pointer;"><i *ngIf="btnCloseModal" (click)="closeModal()" class="fas fa-times-circle"></i></div>
                 </div>
             <div [ngClass]="noPadding ? 'body-modal no-padding no-bg': 'body-modal'">
                 <ng-content></ng-content>

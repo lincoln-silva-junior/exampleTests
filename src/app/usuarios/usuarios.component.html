@@ -22,19 +22,31 @@
                     
                     <div class="form-group">
                         <label for="txtId">Código:</label>
-                        <input type="text" name="txtId" id="txtId" class="form-control" formControlName="id" disabled="disabled">
+                        <input type="text" name="txtId" id="txtId" class="form-control" formControlName="id" disabled="disabled">                        
                     </div>
-                    <div class="form-group">
-                        <label for="txtNome">Nome:</label>
-                        <input type="text" name="txtNome" id="txtNome" class="form-control"  formControlName="nome">
+                    <div class="form-group" [ngClass]="aplicaCssErro('nome')">
+                        <label for="nome">Nome:</label>
+                        <input type="text" name="nome" id="nome" class="form-control"  formControlName="nome">
+                        <app-campo-control-erro
+                            [mostrarErro]="verificaValidTouched('nome')"
+                            msgErro="O campo é obrigatório">
+                        </app-campo-control-erro>
                     </div>
-                    <div class="form-group">
-                        <label for="txtLogin">Login:</label>
-                        <input type="text" name="txtLogin" id="txtLogin" class="form-control" formControlName="login">
+                    <div class="form-group" [ngClass]="aplicaCssErro('login')">
+                        <label for="login">Login:</label>
+                        <input type="text" name="login" id="login" class="form-control" formControlName="login">
+                        <app-campo-control-erro
+                            [mostrarErro]="verificaValidTouched('login')"
+                            msgErro="O campo é obrigatório">
+                        </app-campo-control-erro>
                     </div>
-                    <div class="form-group">
-                        <label for="txtEmail">Email:</label>
-                        <input type="text" name="txtEmail" id="txtEmail" class="form-control" formControlName="email">
+                    <div class="form-group" [ngClass]="aplicaCssErro('email')">
+                        <label for="email">Email:</label>
+                        <input type="text" name="email" id="email" class="form-control" formControlName="email">
+                        <app-campo-control-erro
+                            [mostrarErro]="verificaValidTouched('email')"
+                            msgErro="O campo é obrigatório">
+                        </app-campo-control-erro>
                     </div>                  
                 </div>
             </div>

@@ -9,8 +9,11 @@ import { AgGridModule } from 'ag-grid-angular';
 import { GridBaseComponent } from './shared/grid-base/grid-base.component';
 import { ModalComponent } from './shared/modal/modal.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
-import { UsuariosService } from './usuarios/usuarios.service';
+import { UsuariosService } from './services/usuarios.service';
 import { EditButtonModalComponent } from './shared/grid-base/edit-button-modal/edit-button-modal.component';
+import { CampoControlErroComponent } from './shared/campo-control-erro/campo-control-erro.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -20,12 +23,14 @@ import { EditButtonModalComponent } from './shared/grid-base/edit-button-modal/e
     GridBaseComponent,
     ModalComponent,
     UsuariosComponent,
-    EditButtonModalComponent
+    EditButtonModalComponent,
+    CampoControlErroComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
     AgGridModule.withComponents([EditButtonModalComponent])
   ],
   providers: [UsuariosService],

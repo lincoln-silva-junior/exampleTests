@@ -17,3 +17,16 @@ img {
     max-width: 100%;
     max-height: 100%;
 }
+
+.ng-invalid.ng-touched:not(form){
+    border: 1px solid red;
+}
+
+.fa-times{
+    width: 15px;
+    margin: -25px 10px;
+    color: red;
+    float:right;
+}
+
+
