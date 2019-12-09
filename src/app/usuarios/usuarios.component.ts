@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, pipe } from 'rxjs';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalComponent } from '../shared/modal/modal.component';
 import { UsuariosService } from '../services/usuarios.service';
@@ -7,6 +7,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormBaseComponent } from '../shared/form-base/form-base.component';
 import { User } from '../model/user';
+import { take, delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-usuarios',
@@ -49,7 +50,14 @@ export class UsuariosComponent extends FormBaseComponent implements OnInit {
   submit() {
     const postObject = this.formulario.value;
 
-    if (this.formulario.controls.id.value == null) {
+    this.usersService.save(postObject).subscribe(
+      // success => alert('Sucesso'),
+      success => this.clearForm(),
+      error => alert(error),
+      () => console.log('Request Completo')
+    );
+
+    /*if (this.formulario.controls.id.value == null) {
       if (this.usersService.save(postObject)) {
         alert('Registro Incluído com Sucesso!');
       } else {
@@ -61,8 +69,8 @@ export class UsuariosComponent extends FormBaseComponent implements OnInit {
       } else {
         alert('Erro ao Alterar Registro!');
       }
-    }
-    this.clearForm();
+    }*/
+    // this.clearForm();
   }
 
   newRegister() {
@@ -87,12 +95,14 @@ export class UsuariosComponent extends FormBaseComponent implements OnInit {
     this.formulario.controls.login.setValue(usuario.login);
     this.formulario.controls.email.setValue(usuario.email);*/
     this.usersService.listByID(parseInt(id, 10)).subscribe((data: any) => {
-
       this.formulario.controls.id.setValue(data.id);
       this.formulario.controls.nome.setValue(data.nome);
       this.formulario.controls.login.setValue(data.login);
       this.formulario.controls.email.setValue(data.email);
-    });
+    },
+    error => console.error(error),
+    () => console.log('Request Completo'));
+
     this.modalUsuario.showModal();
   }
 
@@ -114,8 +124,18 @@ export class UsuariosComponent extends FormBaseComponent implements OnInit {
   }
 
   clearForm() {
+
+    alert('Sucesso');
+
     this.formulario.reset();
-    this.gridUsuarios.gridApi.setRowData(this.rowData);
+
+    this.usersService.list().subscribe((data: any) => {
+      this.rowData = data;
+      this.gridUsuarios.gridApi.setRowData(this.rowData);
+    },
+    error => console.error(error),
+    () => console.log('Request Completo'));
+
     this.modalUsuario.closeModal();
   }
 
