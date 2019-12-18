@@ -2,6 +2,14 @@
     <span class="form-control-feedback"><i class="fas fa-times"></i></span>
     <span class="sr-only">(error)</span>
     <div class="alert alert-danger" role="alert">
-        {{ msgErro }}
-    </div>
+        <div *ngIf="control.errors.required"><small>O campo é obrigatório!</small></div>
+        <div *ngIf="control.errors.unique"><small>{{control.errors.unique}}</small></div>
+        <div *ngIf="control.errors.minlength"><small>Tamanho inferior ao limite mínimo.</small></div>
+        <div *ngIf="control.errors.maxlength"><small>Tamanho superior ao limite máximo.</small></div>
+        <div *ngIf="control.errors.lessThen"><small>{{control.errors.lessThen}}</small></div>
+        <div *ngIf="control.errors.greaterThan"><small>{{control.errors.greaterThan}}</small></div>
+        <div *ngIf="control.errors.email"><small>Email Inválido!</small></div>
+        <div *ngIf="control.errors.mobile"><small>{{control.errors.mobile}}</small></div>
+        <div *ngIf="control.errors.confirmPassword"><small>{{control.errors.confirmPassword}}</small></div>
+    </div>    
 </div>

@@ -1,4 +1,5 @@
-import { Observable, pipe } from 'rxjs';
+import { AlertModalService } from './../shared/alert-modal.service';
+import { Observable, pipe, empty } from 'rxjs';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalComponent } from '../shared/modal/modal.component';
 import { UsuariosService } from '../services/usuarios.service';
@@ -7,7 +8,9 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormBaseComponent } from '../shared/form-base/form-base.component';
 import { User } from '../model/user';
-import { take, delay } from 'rxjs/operators';
+import { take, delay, catchError } from 'rxjs/operators';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { AlertModalComponent } from '../shared/alert-modal/alert-modal.component';
 
 @Component({
   selector: 'app-usuarios',
@@ -22,19 +25,32 @@ export class UsuariosComponent extends FormBaseComponent implements OnInit {
   // public rowData: Observable<User[]>;
    public rowData: any[];
   // formulario: FormGroup;
+  bsModalRef: BsModalRef;
 
   constructor(private usersService: UsuariosService,
               private formBuilder: FormBuilder,
-              private router: Router) {
+              private router: Router,
+              private alertService: AlertModalService) {
                 super();
                }
 
   ngOnInit() {
     this.InitGrid();
     // this.rowData = this.usersService.list();
-    this.usersService.list().subscribe(users => {
+    /*this.usersService.list().subscribe(users => {
+      this.rowData = users;
+    });*/
+
+    this.usersService.list()
+    .pipe(catchError(error => {
+      this.handleError();
+      return empty();
+    }))
+    .subscribe(users => {
       this.rowData = users;
     });
+
+
     this.InitForm();
   }
 
@@ -137,6 +153,10 @@ export class UsuariosComponent extends FormBaseComponent implements OnInit {
     () => console.log('Request Completo'));
 
     this.modalUsuario.closeModal();
+  }
+
+  handleError() {
+    this.alertService.showAlertDanger('Erro ao carregar usuários. Tente novamente mais tarde.');
   }
 
 }

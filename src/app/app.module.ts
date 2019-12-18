@@ -13,6 +13,8 @@ import { UsuariosService } from './services/usuarios.service';
 import { EditButtonModalComponent } from './shared/grid-base/edit-button-modal/edit-button-modal.component';
 import { CampoControlErroComponent } from './shared/campo-control-erro/campo-control-erro.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AgGridModule.withComponents([EditButtonModalComponent])
+    AgGridModule.withComponents([EditButtonModalComponent]),
+    ModalModule.forRoot(),
+    SharedModule
   ],
   providers: [UsuariosService],
   bootstrap: [AppComponent]

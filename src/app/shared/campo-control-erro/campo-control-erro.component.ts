@@ -8,18 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CampoControlErroComponent implements OnInit {
 
   @Input() mostrarErro: boolean;
-  @Input() msgErro: string;
-  @Input() errors: any;
+  @Input() control: any;
 
   constructor() { }
 
   ngOnInit() {
-
-    /*if (this.errors !== undefined) {
-      const valErrors = this.errors;
-    } else {
-      const valErrors = [];
-    }*/
 
   }
 
