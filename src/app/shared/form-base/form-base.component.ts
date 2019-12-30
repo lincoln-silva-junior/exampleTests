@@ -1,6 +1,7 @@
 import { FormGroup, FormArray } from '@angular/forms';
-import { Component, OnInit, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, AfterViewInit, Injector } from '@angular/core';
 import { CampoControlErroComponent } from '../campo-control-erro/campo-control-erro.component';
+import { AlertModalService } from '../alert-modal.service';
 
 @Component({
   selector: 'app-form-base',
@@ -10,7 +11,11 @@ export abstract class  FormBaseComponent implements OnInit {
 
   public formulario: FormGroup;
 
-  constructor() { }
+  protected alertService: AlertModalService;
+
+  constructor(injector: Injector) {
+    this.alertService = injector.get(AlertModalService);
+  }
 
   ngOnInit() {
   }
@@ -71,6 +76,10 @@ export abstract class  FormBaseComponent implements OnInit {
 
   getCampo(campo: string): any {
     return this.formulario.get(campo);
+  }
+
+  handleError(msg: string) {
+    this.alertService.showAlertDanger(msg);
   }
 
 }

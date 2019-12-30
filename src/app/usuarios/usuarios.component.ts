@@ -1,6 +1,6 @@
 import { AlertModalService } from './../shared/alert-modal.service';
 import { Observable, pipe, empty } from 'rxjs';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Injector } from '@angular/core';
 import { ModalComponent } from '../shared/modal/modal.component';
 import { UsuariosService } from '../services/usuarios.service';
 import { GridBaseComponent } from '../shared/grid-base/grid-base.component';
@@ -30,8 +30,8 @@ export class UsuariosComponent extends FormBaseComponent implements OnInit {
   constructor(private usersService: UsuariosService,
               private formBuilder: FormBuilder,
               private router: Router,
-              private alertService: AlertModalService) {
-                super();
+              injector: Injector) {
+                super(injector);
                }
 
   ngOnInit() {
@@ -43,7 +43,7 @@ export class UsuariosComponent extends FormBaseComponent implements OnInit {
 
     this.usersService.list()
     .pipe(catchError(error => {
-      this.handleError();
+      this.handleError('Erro ao carregar usuários. Tente novamente mais tarde.');
       return empty();
     }))
     .subscribe(users => {
@@ -69,7 +69,8 @@ export class UsuariosComponent extends FormBaseComponent implements OnInit {
     this.usersService.save(postObject).subscribe(
       // success => alert('Sucesso'),
       success => this.clearForm(),
-      error => alert(error),
+      // error => alert(error),
+      error => this.handleError('Erro na gravação do usuário. Por favor tente mais tarde.'),
       () => console.log('Request Completo')
     );
 
@@ -153,10 +154,6 @@ export class UsuariosComponent extends FormBaseComponent implements OnInit {
     () => console.log('Request Completo'));
 
     this.modalUsuario.closeModal();
-  }
-
-  handleError() {
-    this.alertService.showAlertDanger('Erro ao carregar usuários. Tente novamente mais tarde.');
   }
 
 }
