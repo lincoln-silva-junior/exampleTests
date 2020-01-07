@@ -15,6 +15,7 @@ import { CampoControlErroComponent } from './shared/campo-control-erro/campo-con
 import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SharedModule } from './shared/shared.module';
+import { LoginComponent } from './auth/login/login.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { SharedModule } from './shared/shared.module';
     UsuariosComponent,
     EditButtonModalComponent,
     CampoControlErroComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
