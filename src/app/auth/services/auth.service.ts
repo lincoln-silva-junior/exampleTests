@@ -1,5 +1,5 @@
 import { Tokens } from './../models/tokens';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap, catchError, mapTo } from 'rxjs/operators';
@@ -14,6 +14,7 @@ export class AuthService {
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
   loggedUser: string;
+  mostraMenuEmitter = new EventEmitter<boolean>();
 
   constructor(private http: HttpClient) { }
 
@@ -59,6 +60,7 @@ export class AuthService {
   private doLoginUser(username: string, tokens: Tokens) {
     this.loggedUser = username;
     this.storeTokens(tokens);
+    this.mostraMenuEmitter = new EventEmitter<boolean>();
   }
 
   private doLogoutUser() {

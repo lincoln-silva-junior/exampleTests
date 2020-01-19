@@ -15,7 +15,7 @@ import { CampoControlErroComponent } from './shared/campo-control-erro/campo-con
 import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SharedModule } from './shared/shared.module';
-import { LoginComponent } from './auth/login/login.component';
+import { AuthModule } from './auth/auth.module';
 
 
 @NgModule({
@@ -28,7 +28,6 @@ import { LoginComponent } from './auth/login/login.component';
     UsuariosComponent,
     EditButtonModalComponent,
     CampoControlErroComponent,
-    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +36,8 @@ import { LoginComponent } from './auth/login/login.component';
     HttpClientModule,
     AgGridModule.withComponents([EditButtonModalComponent]),
     ModalModule.forRoot(),
-    SharedModule
+    SharedModule,
+    AuthModule
   ],
   providers: [UsuariosService],
   bootstrap: [AppComponent]
